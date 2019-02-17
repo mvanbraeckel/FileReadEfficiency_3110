@@ -16,8 +16,7 @@ RAM:        20 GB
 Harddisk:   256GB SanDisk SD7TN6S256G1001 Fixed Hard Disk
 OS:         Microsoft Windows 10 Home
 
-VirtualBox----
-Version:
+VirtualBox Version: 5.2.4 r119785 (Qt5.6.2)
 
 ================================================
 

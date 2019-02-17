@@ -1,5 +1,5 @@
 #!/bin/bash
-buffersize=(1 256 512 1024 2048 2096)
+buffersize=(1 256 512 1024 2048 4096)
 ## Start testing
 for value in ${buffersize[*]}
 do
