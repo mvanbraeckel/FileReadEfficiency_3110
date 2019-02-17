@@ -4,10 +4,10 @@ buffersize=(1 256 512 1024 2048 4096)
 for value in ${buffersize[*]}
 do
 ## Testing Unix I/O system calls
-tcommando="./unixio filename $value 1"
+tcommando="./unixio myFile $value 1"
 eval $tcommando
 ## Testing C calls
-tcommando="./unixio filename $value 0"
+tcommando="./unixio myFile $value 0"
 eval $tcommando
 done
 ## Testing is done! :-)

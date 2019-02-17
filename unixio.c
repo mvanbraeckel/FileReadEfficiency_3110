@@ -54,7 +54,7 @@ int main( int argc, char *argv[] ) {
     if(typeofcalls == 1) {
         // Use unix I/O system calls
         // init print and start timer
-        printf("Using Unix I/O systems calls to read a file by %d bytes per fread\n", numBytes);
+        printf("Using Unix I/O systems calls to read a file by %d bytes per read\n", numBytes);
         startTimer();
         // open (check failure), read until failure, close, calc and display elapsed time
         int fd = open(argv[1], O_RDONLY);
