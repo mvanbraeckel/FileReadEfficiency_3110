@@ -20,3 +20,22 @@ VirtualBox Version: 5.2.4 r119785 (Qt5.6.2)
 
 ================================================
 
+BRIEF OBSERVATION REPORT:
+
+My program’s output was very similar to the sample output in the CIS3110_A2_2019.pdf, with a few exceptions.
+Although the trend was the same, my first values were significantly greater, and my latter values were a fair amount lower.
+Also, the sample output’s time started to increase in the last two values for the elapsed time of using C function calls,
+whereas my values possessed a continued downward trend with a declining rate of degradation.
+
+Overall, the trend was an inversely proportional downward trend between the size of bytes being read each time and the time
+elapsed for both Unix systems calls and C function calls where the elapsed time decreased as the number of bytes per read or
+fread increased. For the last value of 4096 bytes, Unix systems calls take less time than C function calls.
+Note that in the sample output, this occurs sooner at 1024 bytes.
+
+As you can see from the plot I made and included, the function of best fit is an exponential reflected in the y-axis.
+Just like my output, this graph shows that Unix systems calls are much slower than C function calls when reading a smaller
+number of bytes at a time. However, at approximately 3000 bytes and above (POI = (3093.209, 256.044) according to the graph),
+Unix systems calls become faster. Note that the sample data shows this to be closer to a size of 1000 bytes.
+
+In conclusion, the observations from the sample and my own output provide evidence that C function calls are more efficient
+for a smaller number of bytes per read/fread, whereas Unix systems calls are better for reads of larger sizes.

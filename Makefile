@@ -13,7 +13,9 @@ unixio: unixio.c
 
 git: *.c *.sh Makefile 
 	git add Makefile
+	git add myFile
 	git add *.pdf
+	git add *.png
 	git add *.txt
 	git add *.c
 	git add *.sh
