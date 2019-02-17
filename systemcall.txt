@@ -32,7 +32,7 @@ elapsed for both Unix systems calls and C function calls where the elapsed time 
 fread increased. For the last value of 4096 bytes, Unix systems calls take less time than C function calls.
 Note that in the sample output, this occurs sooner at 1024 bytes.
 
-As you can see from the plot I made and included, the function of best fit is an exponential reflected in the y-axis.
+As you can see from the PNG plot images I made and included, the function of best fit is an exponential reflected in the y-axis.
 Just like my output, this graph shows that Unix systems calls are much slower than C function calls when reading a smaller
 number of bytes at a time. However, at approximately 3000 bytes and above (POI = (3093.209, 256.044) according to the graph),
 Unix systems calls become faster. Note that the sample data shows this to be closer to a size of 1000 bytes.
