@@ -41,8 +41,7 @@ int main( int argc, char *argv[] ) {
         fprintf(stderr, "Number of bytes must be a positive integer\n");
         fprintf(stderr, "Usage: %s <filename> <numBytes> <ioCallType>\n", argv[0]);
         exit(EXIT_FAILURE);
-    }
-    if(strlen(argv[3]) != 1 || !isdigit(argv[3]) || typeofcalls > 1) {
+    } else if(!isNumber(argv[3]) || typeofcalls > 1) {
         fprintf(stderr, "I/O Call Type must be 0 (for C function call) or 1 (for Unix system call)\n");
         fprintf(stderr, "Usage: %s <filename> <numBytes> <ioCallType>\n", argv[0]);
         exit(EXIT_FAILURE);
@@ -51,10 +50,23 @@ int main( int argc, char *argv[] ) {
     // create proper sized buffer for reading the file
     void *buffer = malloc(numBytes+1);
 
-    if (typeofcalls == 1) {
-        // Use unix I/O system calls to
-        // implementation
-    } else if (typeofcalls == 0) {
+    // check which I/O call type to use
+    if(typeofcalls == 1) {
+        // Use unix I/O system calls
+        // init print and start timer
+        printf("Using Unix I/O systems calls to read a file by %d bytes per fread\n", numBytes);
+        startTimer();
+        // open (check failure), read until failure, close, calc and display elapsed time
+        int fd = open(argv[1], O_RDONLY);
+        if(fd == -1) {
+            fprintf(stderr, "ERROR: File '%s' does not exist or could not be opened\n", argv[1]);
+            exit(EXIT_FAILURE);
+        }
+        while(read(fd , buffer, numBytes));
+        close(fd);
+        stopTimer("Unix read");
+
+    } else if(typeofcalls == 0) {
         // Use C standard I/O function calls (remember to use fgetc when numBytes is 1)
         if(numBytes == 1) {
             // init print and start timer
@@ -63,7 +75,7 @@ int main( int argc, char *argv[] ) {
             // open (check failure), read until failure, close, calc and display elapsed time
             FILE *fp = fopen(argv[1], "r");
             if(fp == NULL) {
-                fprintf(stderr, "ERROR: File %s does not exist or could not be opened\n", argv[1]);
+                fprintf(stderr, "ERROR: File '%s' does not exist or could not be opened\n", argv[1]);
                 exit(EXIT_FAILURE);
             }
             while(fgetc(fp) != EOF);
@@ -77,10 +89,10 @@ int main( int argc, char *argv[] ) {
             // open (check failure), read until failure, close, calc and display elapsed time
             FILE *fp = fopen(argv[1], "r");
             if(fp == NULL) {
-                fprintf(stderr, "ERROR: File %s does not exist or could not be opened\n", argv[1]);
+                fprintf(stderr, "ERROR: File '%s' does not exist or could not be opened\n", argv[1]);
                 exit(EXIT_FAILURE);
             }
-            while(fread(buffer, numBytes, 1, fp));
+            while(!feof(fp)) fread(buffer, numBytes, 1, fp);
             fclose(fp);
             stopTimer("C fread");
         }
@@ -91,6 +103,7 @@ int main( int argc, char *argv[] ) {
         exit(EXIT_FAILURE);
     }
 
+    free(buffer);
     return 0;
 }
 

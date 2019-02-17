@@ -15,6 +15,9 @@ CPU:        Intel(R) Core(TM) i7-6600U CPU @ 2.60GHz, 2808 Mhz, 2 Cores, 4 Logic
 RAM:        20 GB
 Harddisk:   256GB SanDisk SD7TN6S256G1001 Fixed Hard Disk
 OS:         Microsoft Windows 10 Home
-VirtualBox version:
+
+VirtualBox----
+Version:
+
 ================================================
 
